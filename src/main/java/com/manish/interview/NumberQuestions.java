@@ -16,6 +16,9 @@ public class NumberQuestions {
         System.out.println(divideByFour(-12));
         System.out.println("Is 32 a power of 2 ? " + isPowerOfTwo(32));
         System.out.println("Is 31 a power of 2 ? " + isPowerOfTwo(31));
+        for(int i=0;i<10;i++){
+            System.out.println("Factorial of " + i + " is " + getFactorial(i));
+        }
 
     }
 
@@ -81,5 +84,16 @@ public class NumberQuestions {
        //Here we use this algorithm that I found on Wikipedia.
        //A number is a power of 2 if N & (N-1) = 0
         return (n & (n-1)) == 0;
+    }
+
+    /**
+     * Get factorial of a given number
+     * @param n the number
+     * @return factorial of the given number
+     */
+    public static int getFactorial(int n){
+        if(n == 1) return 1;
+        if(n == 0) return 0;
+        else return n*getFactorial(n-1);
     }
 }
