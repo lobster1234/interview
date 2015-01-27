@@ -87,9 +87,7 @@ public class StringQuestions {
      * @return the reversed string
      */
     public static String reverseRecursion(String input){
-        if(input.length()==0) return "";
-        if(input.length()==1) return input;
-        if(input.length()==2) return new String(new char[]{input.toCharArray()[1] ,input.toCharArray()[0]});
+        if(input.length() <= 1) return input;
         else //end index is exclusive, I learned the hard way. So input.length() is fine for endindex.
             return input.substring(input.length()-1,input.length()) + reverseRecursion(input.substring(0,input.length()-1));
     }
