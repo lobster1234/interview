@@ -23,6 +23,8 @@ public class StringQuestions {
         System.out.println("The numeric value of -12-3 is " + getNumericValue("-12-3"));
         System.out.println("The numeric value of +123 is " + getNumericValue("+123"));
         System.out.println("The numeric value of 123 is " + getNumericValue("123"));
+        System.out.println("Clean string with abc and bcd is " + cleanSecondString("abc","bcd"));
+        System.out.println("Clean string with abc and pqr is " + cleanSecondString("abc","pqr"));
     }
 
 
@@ -184,5 +186,42 @@ public class StringQuestions {
             }
         }
         return value * signValue;
+    }
+
+    /**
+     * Remove all characters of first from second, and clean up 2nd to return a new string
+     * @param first The first string
+     * @param second The second string
+     * @return A cleaned up 2nd string
+     */
+    public static String cleanSecondString(String first, String second){
+        char[] firstArray = first.toCharArray();
+        char[] secondArray = second.toCharArray();
+        //loop through first and remove all elements in 2nd that match that character
+        //Freakin N*N worst case complexity here.
+        for(int i=0;i<firstArray.length;i++){
+            for(int j=0;j<secondArray.length;j++){
+                if(secondArray[j] == firstArray[i]) secondArray[j] = '\n'; //lets just add a newline and later we will get rid of all newlines
+            }
+        }
+        //now we have the 2nd array with a bunch of new lines for the matches, we create a new array removing all the newlines
+        //how long is the new array? that'd be the size minus the newlines
+        int newLineCount = 0;
+        //Add N to the complexity
+        for(char c: secondArray){
+            if(c == '\n') ++newLineCount;
+        }
+        char[] newArray = new char[secondArray.length-newLineCount];
+
+        int newArrayIndex = 0;
+        //Add another N to the complexity
+        for(char c:secondArray){
+            if(c !='\n') {
+                newArray[newArrayIndex] = c;
+                ++newArrayIndex;
+            }
+        }
+        //Total complexity is N*N + 2N or basically N*N. Terrible impl.
+        return new String(newArray);
     }
 }
