@@ -2,31 +2,20 @@ package com.manish.interview;
 
 
 /**
+ * This class has number-related questions.
+ * Not necessarily using a lot of data structures.
  * Created by mpandit on 1/25/15.
  */
 public class NumberQuestions {
 
 
     public static void main(String[] args){
-        System.out.println("Binary of 2 is " + getBinary(2));
-        System.out.println("Binary of 349 is " + getBinary(349)); //0101011101 got 101011101
         getFibonacchiSeries(20);
         System.out.println(multiplyByTwo(-5));
         System.out.println(divideByTwo(-10));
         System.out.println(divideByFour(-12));
 
     }
-
-    /**
-     * Get binary representation of a decimal
-     * @param number The decimal number
-     * @return The binary string
-     */
-    public static String getBinary(int number){
-        //we will use the bitwise operators to achieve this
-        return null;
-    }
-
 
     /**
      * Get fibonachhi series up to the count
