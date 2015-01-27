@@ -1,0 +1,2 @@
+# interview
+Typical Interview Questions
