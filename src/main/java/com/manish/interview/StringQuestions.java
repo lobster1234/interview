@@ -18,6 +18,11 @@ public class StringQuestions {
         System.out.println("Recursive reverse " + reverseRecursion("Manish"));
         System.out.println("Change lower to upper in string abCdefg " + convertLowerToUpper("abCdefg"));
         System.out.println("Switch cases for aBcDeFgH is " + switchCases("aBcDeFgH"));
+        System.out.println("The numeric value of abc is " + getNumericValue("abc"));
+        System.out.println("The numeric value of -123 is " + getNumericValue("-123"));
+        System.out.println("The numeric value of -12-3 is " + getNumericValue("-12-3"));
+        System.out.println("The numeric value of +123 is " + getNumericValue("+123"));
+        System.out.println("The numeric value of 123 is " + getNumericValue("123"));
     }
 
 
@@ -121,6 +126,7 @@ public class StringQuestions {
      * Switch lower to upper and upper to lower. Again, we will use the ASCII table
      * for this logic.
      * Note that this does not handle numbers in the string.
+     * (We can handle that by adding a private method called isNumber which checks if c <= '9' && c >= '0'.
      * @param input The input string
      * @return string with swapped cases
      */
@@ -141,4 +147,42 @@ public class StringQuestions {
         return new String(array);
     }
 
+
+    /**
+     * A function that checks if a string is a number, and returns that number.
+     * This will return 0 if the string is not a number.
+     * Test cases -
+     * "-123" ==> -123
+     * "+123" ==> 123
+     * "123" ==> 123
+     * "-123-" ==> 0
+     * Since we are dealing with integers, there is no need to handle decimals.
+     * We can write another revision of this code to handle a floating point.
+     *
+     * @param string The input string
+     * @return null if not a number, numeric value if it is a number.
+     */
+    public static int getNumericValue(String string){
+        //first off the sign has to be there, if at all, at the first place.
+        //if so, store it.
+        char[] array = string.toCharArray();
+        boolean isSign = array[0]=='-' || array[0]=='+';
+        //we need to return the negative int if thats the case
+        int signValue = (array[0]=='-')? -1:1;
+        //now we start looking up the values in the char[].
+        //if there is a sign, we skip index 0. If not, we start with index 0
+        int start = 0;
+        if(isSign) start = 1;
+        int value = 0;
+        for(int i=start;i<string.length();i++){
+            if(!(array[i] >= '0' && array[i] <='9')) {
+                return 0;
+            }else{
+                //since we're creating a number we need to build it given the unit values
+                //Every iteration basically multiplies the number by 10
+                value = value*10 + array[i] - '0';
+            }
+        }
+        return value * signValue;
+    }
 }
