@@ -16,6 +16,8 @@ public class StringQuestions {
         System.out.println(reverseInPlace("Tanvi"));
         System.out.println(filterDuplicates("Manish Pandit"));
         System.out.println("Recursive reverse " + reverseRecursion("Manish"));
+        System.out.println("Change lower to upper in string abCdefg " + convertLowerToUpper("abCdefg"));
+        System.out.println("Switch cases for aBcDeFgH is " + switchCases("aBcDeFgH"));
     }
 
 
@@ -90,6 +92,53 @@ public class StringQuestions {
         if(input.length() <= 1) return input;
         else //end index is exclusive, I learned the hard way. So input.length() is fine for endindex.
             return input.substring(input.length()-1,input.length()) + reverseRecursion(input.substring(0,input.length()-1));
+    }
+
+    /**
+     * Convert lower case characters to upper case characters.
+     * Per ASCII table A is 65, a is 97.
+     * B is 11, b is 62, so a delta of 32
+     * So, subtracting 32 from the lower case will return the upper case.
+     * We do not need to remember 32, we can get it by 'a' - 'A'.
+     * Just remember in ASCII table, upper case comes before lower case
+     * @param input
+     * @return upper cased string
+     */
+    public static String convertLowerToUpper(String input){
+        int delta = 'a' - 'A';
+        System.out.println("The delta is " + delta);
+        char[] arr = input.toCharArray();
+        for(int i=0;i<arr.length;i++){
+            if(arr[i] > 'Z'){
+                //means its lower case
+                arr[i] = (char) (arr[i] - delta);
+            }
+        }
+        return new String(arr);
+    }
+
+    /**
+     * Switch lower to upper and upper to lower. Again, we will use the ASCII table
+     * for this logic.
+     * Note that this does not handle numbers in the string.
+     * @param input The input string
+     * @return string with swapped cases
+     */
+    public static String switchCases(String input){
+        char[] array = input.toCharArray();
+        //now we iterate and see if the char is upper or lower.
+        //convert lower to upper by subtracting delta, convert upper to lower by adding delta
+        int delta = 'a' - 'A';
+        for(int i=0;i<array.length;i++){
+            if(array[i] > 'Z'){
+                //its lower case so we need to make it upper case by subtracting delta
+                array[i] = (char)(array[i] - delta);
+            }else{
+                //its upper case
+                array[i] = (char)(array[i] + delta);
+            }
+        }
+        return new String(array);
     }
 
 }

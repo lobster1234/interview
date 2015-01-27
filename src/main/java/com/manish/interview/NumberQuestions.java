@@ -14,6 +14,8 @@ public class NumberQuestions {
         System.out.println(multiplyByTwo(-5));
         System.out.println(divideByTwo(-10));
         System.out.println(divideByFour(-12));
+        System.out.println("Is 32 a power of 2 ? " + isPowerOfTwo(32));
+        System.out.println("Is 31 a power of 2 ? " + isPowerOfTwo(31));
 
     }
 
@@ -76,6 +78,8 @@ public class NumberQuestions {
      * @return if the number if a power of 2 or not
      */
     public static boolean isPowerOfTwo(int n){
-       return false;
+       //Here we use this algorithm that I found on Wikipedia.
+       //A number is a power of 2 if N & (N-1) = 0
+        return (n & (n-1)) == 0;
     }
 }
