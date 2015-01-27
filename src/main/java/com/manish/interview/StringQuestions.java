@@ -25,6 +25,8 @@ public class StringQuestions {
         System.out.println("The numeric value of 123 is " + getNumericValue("123"));
         System.out.println("Clean string with abc and bcd is " + cleanSecondString("abc","bcd"));
         System.out.println("Clean string with abc and pqr is " + cleanSecondString("abc","pqr"));
+        System.out.println("Find duplicates in string abcaabcdefgh ");
+        findDuplicateCharactersInString("abcaabcdefgh");
     }
 
 
@@ -223,5 +225,22 @@ public class StringQuestions {
         }
         //Total complexity is N*N + 2N or basically N*N. Terrible impl.
         return new String(newArray);
+    }
+
+    /**
+     * Print duplicate characters in a string
+     * @param string The input string
+     */
+    public static void findDuplicateCharactersInString(String string){
+        //lets create an array of length 255 as thats the ascii chart. We assume its an ascii string
+        int[] charset = new int[255];
+        //now we parse the string and set count at the index of the character
+        for(char c: string.toCharArray()){
+            ++charset[c];
+        }
+        //now we print all the indexes where count is greater than 1
+        for(int i=0;i<charset.length;i++){
+            if(charset[i]>=2) System.out.println((char)i);
+        }
     }
 }
