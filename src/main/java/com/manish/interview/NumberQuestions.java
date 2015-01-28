@@ -1,6 +1,9 @@
 package com.manish.interview;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * This class has number-related questions.
  * Not necessarily using a lot of data structures.
@@ -9,7 +12,7 @@ package com.manish.interview;
 public class NumberQuestions {
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception{
         getFibonacchiSeries(20);
         System.out.println(multiplyByTwo(-5));
         System.out.println(divideByTwo(-10));
@@ -19,7 +22,9 @@ public class NumberQuestions {
         for(int i=0;i<10;i++){
             System.out.println("Factorial of " + i + " is " + getFactorial(i));
         }
+        SimpleDateFormat fmt = new SimpleDateFormat("MM/dd/yyyy");
 
+        System.out.println("Difference in 2 dates is" + getDaysBetweenDates(fmt.parse("01/01/2014"), fmt.parse("12/31/2014")));
     }
 
     /**
@@ -95,5 +100,19 @@ public class NumberQuestions {
         if(n == 1) return 1;
         if(n == 0) return 0;
         else return n*getFactorial(n-1);
+    }
+
+
+    /**
+     * Find the number of days between 2 dates
+     * @param start Date1
+     * @param end Date2
+     * @return number of days between start and end dates
+     */
+    public static long getDaysBetweenDates(Date start, Date end){
+        //Simple enough, we need to know how many milliseconds are in a day
+        long millisecondsInADay = 24*60*60*1000;
+        long difference = end.getTime() - start.getTime();
+        return difference/millisecondsInADay;
     }
 }
