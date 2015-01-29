@@ -119,6 +119,12 @@ public class NumberQuestions {
         return difference/millisecondsInADay;
     }
 
+    /**
+     * Find the number of months between 2 dates
+     * @param start Start date
+     * @param end End date
+     * @return The number of months between start and end dates.
+     */
     public static long getMonthsBetweenDates(Date start, Date end){
         Calendar calStart = Calendar.getInstance();
         calStart.setTime(start);
