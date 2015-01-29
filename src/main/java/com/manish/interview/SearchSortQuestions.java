@@ -8,7 +8,12 @@ public class SearchSortQuestions {
 
     public static void main(String[] args){
         int[] sortedArray = new int[]{1,2,3,4,5,6,7,8,9,10};
+        int[] unsortedArray = new int[]{4,2,7,9,12,3,1};
         System.out.println(binarySearch(sortedArray, 7));
+        bubbleSort(unsortedArray);
+        for(int i : unsortedArray) {
+            System.out.print(i + " ");
+        }
     }
 
 
@@ -42,5 +47,29 @@ public class SearchSortQuestions {
         }
         return false;
 
+    }
+
+    /**
+     * Bubble sort with N^2 complexity
+     *
+     * @param data The input array which will get sorted after the execution of this function.
+     *
+     */
+    public static void bubbleSort(int[] data){
+        boolean sorted = false;
+        while(!sorted) {
+            sorted = true; //set it to true assuming there will be no swaps happening
+            for (int i = 0; i < data.length - 1; i++) {
+                if (data[i] > data[i + 1]) {
+                    //swap
+                    int temp = data[i + 1];
+                    data[i + 1] = data[i];
+                    data[i] = temp;
+                    //since we had to swap, this operation has to be done again
+                    //if no swapping happens, done stays true and we can get out of the while loop
+                    sorted = false;
+                }
+            }
+        }
     }
 }
