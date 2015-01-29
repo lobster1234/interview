@@ -2,6 +2,7 @@ package com.manish.interview;
 
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -24,7 +25,9 @@ public class NumberQuestions {
         }
         SimpleDateFormat fmt = new SimpleDateFormat("MM/dd/yyyy");
 
-        System.out.println("Difference in 2 dates is" + getDaysBetweenDates(fmt.parse("01/01/2014"), fmt.parse("12/31/2014")));
+        System.out.println("Difference in 2 dates is " + getDaysBetweenDates(fmt.parse("01/01/2014"), fmt.parse("12/31/2014")));
+        System.out.println("Months between the 2 dates are " + getMonthsBetweenDates(fmt.parse("01/01/2014"), fmt.parse("12/31/2014")));
+
     }
 
     /**
@@ -114,5 +117,18 @@ public class NumberQuestions {
         long millisecondsInADay = 24*60*60*1000;
         long difference = end.getTime() - start.getTime();
         return difference/millisecondsInADay;
+    }
+
+    public static long getMonthsBetweenDates(Date start, Date end){
+        Calendar calStart = Calendar.getInstance();
+        calStart.setTime(start);
+        Calendar calEnd = Calendar.getInstance();
+        calEnd.setTime(end);
+        long months = 0;
+        while(calEnd.after(calStart)){
+            calStart.add(Calendar.MONTH,1);
+            ++months;
+        }
+        return months;
     }
 }
